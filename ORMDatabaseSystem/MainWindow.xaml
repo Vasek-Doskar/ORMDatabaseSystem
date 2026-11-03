@@ -8,16 +8,43 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid Margin="20">
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Width="220">
-            <TextBlock Text="Název" Margin="0,0,0,5" FontWeight="SemiBold"/>
-            <TextBox x:Name="txtNazev" Width="200" Margin="0,0,0,15"/>
+            <!-- Přidání nového prvku -->
+            <GroupBox Header="Nový prvek" Margin="0,0,0,20" Padding="10">
+                <StackPanel>
+                    <TextBlock Text="Název" Margin="0,0,0,5" FontWeight="SemiBold"/>
+                    <TextBox x:Name="txtNazev" Width="200" Margin="0,0,0,15"/>
 
-            <TextBlock Text="Cena" Margin="0,0,0,5" FontWeight="SemiBold"/>
-            <TextBox x:Name="txtCena" Width="200" Margin="0,0,0,15"/>
+                    <TextBlock Text="Cena" Margin="0,0,0,5" FontWeight="SemiBold"/>
+                    <TextBox x:Name="txtCena" Width="200" Margin="0,0,0,15"/>
 
-            <Button x:Name="btnPridat" Content="Přidat" Width="120" HorizontalAlignment="Left" Click="btnPridat_Click"/>
+                    <Button x:Name="btnPridat" Content="Přidat" Width="120" HorizontalAlignment="Left" Click="btnPridat_Click"/>
+                </StackPanel>
+            </GroupBox>
+
+            <!-- Editace vybraného prvku -->
+            <GroupBox Header="Editace prvku" Padding="10">
+                <StackPanel>
+                    <TextBlock Text="Název" Margin="0,0,0,5" FontWeight="SemiBold"/>
+                    <TextBox x:Name="txtEditNazev" Width="200" Margin="0,0,0,15"/>
+
+                    <TextBlock Text="Cena" Margin="0,0,0,5" FontWeight="SemiBold"/>
+                    <TextBox x:Name="txtEditCena" Width="200" Margin="0,0,0,15"/>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <Button x:Name="btnUlozit" Content="Uložit" Width="90" Margin="0,0,10,0" Click="btnUlozit_Click"/>
+                        <Button x:Name="btnZrusit" Content="Zrušit" Width="90"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
         </StackPanel>
 
         <ListBox x:Name="Seznam" Width="300" Height="300" Background="LightGray" Margin="350,0,0,0" HorizontalAlignment="Left" 
-                 VerticalAlignment="Center"/>
+                 VerticalAlignment="Center" SelectionChanged="Seznam_SelectionChanged">
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Smazat" Click="MenuItem_Smazat_Click"/>
+                </ContextMenu>
+            </ListBox.ContextMenu>
+        </ListBox>
     </Grid>
 </Window>
